@@ -19,27 +19,18 @@
                         </li>
                         <li class="{{ Request::is('admin/password*') ? 'active' : ' ' }}">
                             <a href="{{ route('admin.password') }}">Change Password</a>
-                        </li>
-                        <li class="{{ Request::is('admin/detail*') ? 'active' : ' ' }}">
-                            <a href="{{ route('admin.index') }}">Admin List</a>
-                        </li>                     
+                        </li>                   
                     </ul>
                 </li>
-                <li class="{{ Request::is('admin/customers*') ? 'active' : ' ' }}">
-                    <a href="{{ route('customers.index') }}" ><i class="la la-users"></i> <span>Manage Customers</span></a>                 
-                </li>
-
-                <li class="{{ Request::is('admin/sellers*') ? 'active' : ' ' }}">
-                    <a href="{{ route('sellers.index') }}" ><i class="la la-user"></i> <span>Manage Sellers</span></a>                 
-                </li>
+                
                 
 
-                {{-- <li class="{{ Request::is('admin/members*') ? 'active' : ' ' }}">
-                    <a href="{{ route('user.index') }}"><i class="la la-users"></i> <span>Members</span></a>
+                <li class="{{ Request::is('admin/total-data*') ? 'active' : ' ' }}">
+                    <a href="{{ route('admin.total-data') }}"><i class="la la-database"></i> <span>Total Data</span></a>
                 </li>
-                <li class="{{ Request::is('admin/group*') ? 'active' : ' ' }}">
-                    <a href="{{ route('group.index') }}"><i class="la la-list"></i> <span>Groups</span></a>
-                </li> --}}
+                <li class="{{ Request::is('admin/fresh-data*') ? 'active' : ' ' }}">
+                    <a href="{{ route('admin.fresh-data') }}"><i class="la la-list"></i> <span>Fresh Data</span></a>
+                </li>
 
                 {{-- <li class="menu-title">
                     <span>Content Management System</span>

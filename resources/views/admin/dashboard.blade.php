@@ -22,7 +22,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                {{-- <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
                     <div class="card dash-widget">
                         <div class="card-body">
                             <span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
@@ -43,28 +43,28 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                    <a href="{{ route('sellers.index') }}" style="color: black">
+                    <a href="{{ route('admin.total-data') }}" style="color: black">
                     <div class="card dash-widget">
                         <div class="card-body">
                             <span class="dash-widget-icon"><i class="fa fa-users"></i></span>
                             <div class="dash-widget-info">
-                                <h3>{{ $count['seller'] }}</h3>
-                                <span>Total Sellers</span>
+                                <h3>{{ $count['total_data'] }}</h3>
+                                <span>Total Data</span>
                             </div>
                         </div>
                     </div>
                     </a>
                 </div>
                 <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                    <a href="{{ route('customers.index') }}" style="color: black">
+                    <a href="{{ route('admin.fresh-data') }}" style="color: black">
                         <div class="card dash-widget">
                             <div class="card-body">
                                 <span class="dash-widget-icon"><i class="fa fa-user"></i></span>
                                 <div class="dash-widget-info">
-                                    <h3>{{ $count['customer'] }}</h3>
-                                    <span>Total Customer</span>
+                                    <h3>{{ $count['fresh_data'] }}</h3>
+                                    <span>Fresh Data</span>
                                 </div>
                             </div>
                         </div>
