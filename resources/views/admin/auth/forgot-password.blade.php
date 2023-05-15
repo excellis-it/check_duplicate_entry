@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Forgot Password - Chat Box Admin Panel</title>
+    <title>Forgot Password - {{ env('app_name') }} Admin Panel</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin_assets/img/favicon.png') }}">
 
@@ -25,7 +25,8 @@
 
     <link rel="stylesheet" href="{{ asset('admin_assets/css/style.css') }}">
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <style>
         .form-gap {
             padding-top: 70px;
@@ -64,8 +65,10 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <input name="recover-submit" style="background: linear-gradient(to right, #10acff 0%, #1f1f1f 100%); border:white;" class="btn btn-lg btn-primary btn-block"
-                                            value="Reset Password" type="submit">
+                                        <input name="recover-submit"
+                                            style="background: linear-gradient(to right, #10acff 0%, #1f1f1f 100%); border:white;"
+                                            class="btn btn-lg btn-primary btn-block" value="Reset Password"
+                                            type="submit">
                                     </div>
                                 </form>
 
@@ -88,36 +91,36 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
-    @if(Session::has('message'))
-    toastr.options = {
-        "closeButton": true,
-        "progressBar": true
-    }
-    toastr.success("{{ session('message') }}");
+    @if (Session::has('message'))
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true
+        }
+        toastr.success("{{ session('message') }}");
     @endif
 
-    @if(Session::has('error'))
-    toastr.options = {
-        "closeButton": true,
-        "progressBar": true
-    }
-    toastr.error("{{ session('error') }}");
+    @if (Session::has('error'))
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true
+        }
+        toastr.error("{{ session('error') }}");
     @endif
 
-    @if(Session::has('info'))
-    toastr.options = {
-        "closeButton": true,
-        "progressBar": true
-    }
-    toastr.info("{{ session('info') }}");
+    @if (Session::has('info'))
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true
+        }
+        toastr.info("{{ session('info') }}");
     @endif
 
-    @if(Session::has('warning'))
-    toastr.options = {
-        "closeButton": true,
-        "progressBar": true
-    }
-    toastr.warning("{{ session('warning') }}");
+    @if (Session::has('warning'))
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true
+        }
+        toastr.warning("{{ session('warning') }}");
     @endif
 </script>
 

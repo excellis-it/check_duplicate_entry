@@ -16,7 +16,7 @@ class ProfileController extends Controller
         return view('admin.profile');
     }
 
-    public function update(Request $request)
+    public function profileUpdate(Request $request)
     {
         $request->validate([
             'name'     => 'required',

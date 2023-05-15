@@ -11,7 +11,7 @@ use App\Models\TotalData;
 use Illuminate\Http\Request;
 use Excel;
 use Session;
-
+use Storage;
 class DataController extends Controller
 {
     public function total()
@@ -48,31 +48,33 @@ class DataController extends Controller
 
     public function export()
     {
-        // $count = FreshData::count();
-        // $countDuplicate = Duplicate::count();
-        // if($count == 0){
-        //     return redirect()->back()->with('error', 'Please import data first.');
-        // }
-        // // merge fresh data with total data
-        // $fresh_data = FreshData::get();
-        // foreach ($fresh_data as $key => $value) {
-        //     $total_data = new TotalData();
-        //     $total_data->number = $value->number;
-        //     $total_data->save();
-        // }
+        $count = FreshData::count();
+        $countDuplicate = Duplicate::count();
+        if($count == 0){
+            return redirect()->back()->with('error', 'Please import data first.');
+        }
+        // merge fresh data with total data
+        $fresh_data = FreshData::get();
+        foreach ($fresh_data as $key => $value) {
+            $total_data = new TotalData();
+            $total_data->number = $value->number;
+            $total_data->save();
+        }
         
-        // // delete all data in fresh_data table and duplicate table
+        // delete all data in fresh_data table and duplicate table
         
-        // if($count > 0){
-        //     FreshData::truncate();
-        // }
-        // if($countDuplicate > 0){
-        //     Duplicate::truncate();
-        // }
+        if($count > 0){
+            FreshData::truncate();
+        }
+        if($countDuplicate > 0){
+            Duplicate::truncate();
+        }
         // random file name genararate for excel file
         $random = rand(100000, 999999);
         $fileName = 'fresh_data_'.$random.'.xlsx';
-         Excel::store(new FreshDataExport, $fileName);
-         return response()->json(['file' => $fileName]);
+        //  Excel::store(new FreshDataExport, $fileName);
+        Excel::store(new FreshDataExport, $fileName, 'public');
+        $filepath = Storage::url($fileName);
+         return response()->json(['file' => $fileName, 'path' => $filepath]);
     }
 }

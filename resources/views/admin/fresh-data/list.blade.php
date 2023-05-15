@@ -231,10 +231,13 @@
                     type: 'GET',
                     success: function(response) {
                         var link = document.createElement('a');
-                        link.href = '/storage/app' + response.file; // Assuming the file is stored in the 'storage' folder
+                        var url = 'http://127.0.0.1:8000/'
+                        link.href = response.path; // Assuming the file is stored in the 'storage' folder
                         link.download = response.file;
                         link.click();
-                        window.location.reload();
+                        link.remove();
+                        window.location.href = url;
+                        toastr.success('File Downloaded Successfully');
                     },
                 });
             });
