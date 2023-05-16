@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Excel;
 use Session;
 use Storage;
+
 class DataController extends Controller
 {
     public function total()
@@ -24,7 +25,7 @@ class DataController extends Controller
     {
         $fresh_data = FreshData::get();
         $duplicate_data = Duplicate::get();
-        return view('admin.fresh-data.list')->with(compact('fresh_data','duplicate_data'));
+        return view('admin.fresh-data.list')->with(compact('fresh_data', 'duplicate_data'));
     }
 
     public function import(Request $request)
@@ -35,10 +36,10 @@ class DataController extends Controller
 
         $count = FreshData::count();
         $countDuplicate = Duplicate::count();
-        if($count > 0){
+        if ($count > 0) {
             FreshData::truncate();
         }
-        if($countDuplicate > 0){
+        if ($countDuplicate > 0) {
             Duplicate::truncate();
         }
 
@@ -48,9 +49,17 @@ class DataController extends Controller
 
     public function export()
     {
+        // random file name genararate for excel file
+        $random = rand(100000, 999999);
+        $fileName = 'fresh_data_' . $random . '.xlsx';
+        //  Excel::store(new FreshDataExport, $fileName);
+        Excel::store(new FreshDataExport, $fileName, 'public');
+        $filepath = Storage::url($fileName);
+
+
         $count = FreshData::count();
         $countDuplicate = Duplicate::count();
-        if($count == 0){
+        if ($count == 0) {
             return redirect()->back()->with('error', 'Please import data first.');
         }
         // merge fresh data with total data
@@ -60,21 +69,17 @@ class DataController extends Controller
             $total_data->number = $value->number;
             $total_data->save();
         }
-        
+
+
         // delete all data in fresh_data table and duplicate table
-        
-        if($count > 0){
+
+        if ($count > 0) {
             FreshData::truncate();
         }
-        if($countDuplicate > 0){
+        if ($countDuplicate > 0) {
             Duplicate::truncate();
         }
-        // random file name genararate for excel file
-        $random = rand(100000, 999999);
-        $fileName = 'fresh_data_'.$random.'.xlsx';
-        //  Excel::store(new FreshDataExport, $fileName);
-        Excel::store(new FreshDataExport, $fileName, 'public');
-        $filepath = Storage::url($fileName);
-         return response()->json(['file' => $fileName, 'path' => $filepath]);
+
+        return response()->json(['file' => $fileName, 'path' => $filepath]);
     }
 }
