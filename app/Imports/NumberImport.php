@@ -16,9 +16,11 @@ class NumberImport implements ToModel
     */
     public function model(array $row)
     {
-        // compare data with TotalData table and all data import in Duplicate table
-        // dd($row);
-       
+        // validation
+        if (!is_numeric($row[0])) {
+            return null;
+        }
+        
         $total_data = TotalData::where('number', $row[0])->first();
         if ($total_data) {
             $duplicate = new Duplicate();

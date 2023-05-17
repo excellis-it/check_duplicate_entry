@@ -230,14 +230,19 @@
                     url: route,
                     type: 'GET',
                     success: function(response) {
-                        var link = document.createElement('a');
-                        var url = 'http://127.0.0.1:8000/'
-                        link.href = response.path; // Assuming the file is stored in the 'storage' folder
-                        link.download = response.file;
-                        link.click();
-                        link.remove();
-                        window.location.href = url;
-                        toastr.success('File Downloaded Successfully');
+                        if (response.status == false) {
+                            toastr.error(response.error);
+                        } else {
+                            var link = document.createElement('a');
+                            var url = 'http://127.0.0.1:8000/'
+                            link.href = response
+                            .path; // Assuming the file is stored in the 'storage' folder
+                            link.download = response.file;
+                            link.click();
+                            link.remove();
+                            window.location.href = url;
+                            toastr.success('File Downloaded Successfully');
+                        }
                     },
                 });
             });

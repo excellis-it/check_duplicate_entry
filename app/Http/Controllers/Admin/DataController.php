@@ -60,7 +60,7 @@ class DataController extends Controller
         $count = FreshData::count();
         $countDuplicate = Duplicate::count();
         if ($count == 0) {
-            return redirect()->back()->with('error', 'Please import data first.');
+            return response()->json(['error' => 'No data found.', 'status' => false]);
         }
         // merge fresh data with total data
         $fresh_data = FreshData::get();
@@ -80,6 +80,6 @@ class DataController extends Controller
             Duplicate::truncate();
         }
 
-        return response()->json(['file' => $fileName, 'path' => $filepath]);
+        return response()->json(['file' => $fileName, 'path' => $filepath, 'status' => true]);
     }
 }
