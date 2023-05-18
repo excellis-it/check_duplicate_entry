@@ -15,7 +15,7 @@ class CreateFreshDataTable extends Migration
     {
         Schema::create('fresh_data', function (Blueprint $table) {
             $table->id();
-            $table->string('number')->unique();
+            $table->string('number');
             $table->timestamps();
         });
     }

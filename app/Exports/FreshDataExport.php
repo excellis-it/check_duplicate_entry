@@ -12,6 +12,6 @@ class FreshDataExport implements FromCollection
     */
     public function collection()
     {
-        return FreshData::all();
+        return FreshData::orderBy('id', 'asc')->select('number')->take(50000)->get();
     }
 }

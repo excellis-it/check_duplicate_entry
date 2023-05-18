@@ -42,6 +42,7 @@
 
                     <hr />
                     <div class="table-responsive">
+                        @if($total_data->count() > 0)
                         <table id="myTable" class="dd table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
@@ -54,7 +55,7 @@
                                 @foreach ($total_data as $key =>$total)
                                 
                                 <tr>
-                                    <td>{{ $key+1}}</td>
+                                    <td>{{ $total['id']}}</td>
                                     <td>{{ $total->number}}</td>
                                 </tr>
                                
@@ -62,6 +63,12 @@
                             </tbody>
 
                         </table>
+                        <div>
+                            {{ $total_data->links() }}
+                        </div>
+                        @else
+                        <h3 class="text-center">No Data Found</h3>
+                        @endif
                     </div>
                 </div>
             </div>
