@@ -16,7 +16,7 @@ class CreateDuplicatesTable extends Migration
         Schema::create('duplicates', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->boolean('is_duplicate')->default(false);
+            $table->boolean('is_duplicate');
             $table->timestamps();
         });
     }
